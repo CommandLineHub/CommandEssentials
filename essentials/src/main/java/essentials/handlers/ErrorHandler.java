@@ -35,7 +35,7 @@ public class ErrorHandler {
      */
     public static void throwError(Throwable exception, boolean exit, String message, Object... params) {
         logger.log(LogType.ERROR, message + exception != null ? " Exception => " + exception.getMessage() : "", params);
-        ThreadManager.threadShutdown();
+        ThreadManager.shutdown();
         System.exit(1);
     }
 
