@@ -70,19 +70,12 @@
         </plugin>
       </plugins>
     </pluginManagement>
-    <repositories>
-      <repository>
-      <id>repsy</id>
-      <name>My Private Maven Repository on Repsy</name>
-      <url>https://repo.repsy.io/mvn/cmdlinehub/cmdlinehub</url>
-    </repository>
-    </repositories>
-    <distributionManagement>
-    <repository>
-      <id>repsy</id>
-      <name>My Private Maven Repository on Repsy</name>
-      <url>https://repo.repsy.io/mvn/cmdlinehub/cmdlinehub</url>
-    </repository>
-  </distributionManagement>
   </build>
+  <distributionManagement>
+      <repository>
+        <id>repsy</id>
+        <name>My Private Maven Repository on Repsy</name>
+        <url>https://repo.repsy.io/mvn/cmdlinehub/cmdlinehub</url>
+      </repository>
+  </distributionManagement>
 </project>

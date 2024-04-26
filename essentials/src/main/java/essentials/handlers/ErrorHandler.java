@@ -21,19 +21,15 @@ import essentials.threads.ThreadManager;
  */
 public class ErrorHandler {
     /**
-     * Instance of our debug logger.
-     * @var Logger
-     */
-    private static final Logger logger = Logger.createInstance(ErrorHandler.class.getName());
-
-    /**
      * Throws a new error that was encountered.
+     * @param className the name for the calling class
      * @param exception the exception that was thrown
      * @param exit are we exiting the app execution? true = yes, false = no
      * @param message the message regarding this error
      * @param params optional parameters list
      */
-    public static void throwError(Throwable exception, boolean exit, String message, Object... params) {
+    public static void throwError(String className, Throwable exception, boolean exit, String message, Object... params) {
+        Logger logger = Logger.createInstance(className);
         logger.log(LogType.ERROR, message + exception != null ? " Exception => " + exception.getMessage() : "", params);
         ThreadManager.shutdown();
         System.exit(1);
@@ -41,28 +37,31 @@ public class ErrorHandler {
 
     /**
      * Throws a new error that was encountered.
+     * @param className the name for the calling class
      * @param exception the exception that was thrown
      * @param message the message regarding this error
      * @param params optional parameters list
      */
-    public static void throwError(Throwable exception, String message, Object... params) {
-        throwError(exception, true, message, params);
+    public static void throwError(String className, Throwable exception, String message, Object... params) {
+        throwError(className, exception, true, message, params);
     }
 
     /**
      * Throws a new error that was encountered.
+     * @param className the name for the calling class
      * @param exception the exception that was thrown
      */
-    public static void throwError(Throwable exception) {
-        throwError(exception, true, null, Object[].class);
+    public static void throwError(String className, Throwable exception) {
+        throwError(className, exception, true, null, Object[].class);
     }
 
     /**
      * Throws a new error that was encountered.
+     * @param className the name for the calling class
      * @param message the message regarding this error
      * @param params optional parameters list
      */
-    public static void throwError(String message, Object... params) {
-        throwError(null, true, message, params);
+    public static void throwError(String className, String message, Object... params) {
+        throwError(className, null, true, message, params);
     }
 }
